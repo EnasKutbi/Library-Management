@@ -34,7 +34,7 @@ public class Library {
     }
     public void DeleteBook(Guid id)
     {
-        Book bookToDeleted = _books.Find(book => book.Id == id);
+        var bookToDeleted = _books.Find(book => book.Id == id);
         if (bookToDeleted != null)
         {
             _books.Remove(bookToDeleted);
@@ -46,7 +46,7 @@ public class Library {
     }
     public void DeleteUser(Guid id)
     {
-        User userToDeleted = _users.Find(user => user.Id == id);
+        var userToDeleted = _users.Find(user => user.Id == id);
         if (userToDeleted != null)
         {
             _users.Remove(userToDeleted);

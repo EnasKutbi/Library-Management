@@ -2,9 +2,10 @@
 {
     private static void Main()
     {
-
         var emailService = new EmailNotificationService();
         var smsService = new SMSNotificationService();
+
+        var myLibrary = new Library(emailService);
 
         var libraryWithEmail = new Library(emailService);
         var libraryWithSMS = new Library(smsService);
@@ -40,5 +41,45 @@
         var book18 = new Book("Don Quixote", new DateTime(2024, 6, 1));
         var book19 = new Book("The Iliad");
         var book20 = new Book("Anna Karenina");
+
+        //Book test
+        myLibrary.AddBook(book1);
+        myLibrary.AddBook(book2);
+        myLibrary.AddBook(book3);
+        myLibrary.AddBook(book4);
+        myLibrary.AddBook(book5);
+        myLibrary.AddBook(book10);
+        myLibrary.AddBook(book11);
+        myLibrary.AddBook(book15);
+        myLibrary.AddBook(book20);
+
+        var books = myLibrary.GetAllBooks(1,5);
+        foreach (var book in books)
+        {
+            Console.WriteLine($"{book.Title}");
+        }
+
+        var bookToFound = myLibrary.FindBooksByTitle(book5.Title);
+        Console.WriteLine($"found the book {bookToFound}");
+
+        myLibrary.DeleteBook(book10.Id);
+
+        //user test
+        myLibrary.AddUser(user1);
+        myLibrary.AddUser(user2);
+        myLibrary.AddUser(user3);
+        myLibrary.AddUser(user5);
+        myLibrary.AddUser(user10);
+
+        var users = myLibrary.GetAllUsers(1, 5);
+        foreach (var user in users)
+        {
+            Console.WriteLine($"{user.Title}");
+        }
+
+        var userToFound = myLibrary.FindUsersByName(user5.Title);
+        Console.WriteLine($"found the book {userToFound}");
+
+        myLibrary.DeleteUser(user1.Id);
     }
 }
