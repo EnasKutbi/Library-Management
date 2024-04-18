@@ -1,5 +1,5 @@
-public class User {
-    public int Id;
-    public string Name;
-    public DateTime CreatedDate;
+public class User : LibraryItem
+{
+    public User(string title, DateTime? createdDate = null) : base(title, createdDate)
+    { }
 }

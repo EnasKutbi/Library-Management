@@ -1,5 +1,5 @@
-public class Book {
-    public int Id;
-    public string Title;
-    public DateTime CreatedDate;
+public class Book : LibraryItem
+{
+    public Book(string title, DateTime? createdDate = null) : base(title, createdDate)
+    { }
 }
