@@ -2,6 +2,13 @@
 {
     private static void Main()
     {
+
+        var emailService = new EmailNotificationService();
+        var smsService = new SMSNotificationService();
+
+        var libraryWithEmail = new Library(emailService);
+        var libraryWithSMS = new Library(smsService);
+
         var user1 = new User("Alice", new DateTime(2023, 1, 1));
         var user2 = new User("Bob", new DateTime(2023, 2, 1));
         var user3 = new User("Charlie", new DateTime(2023, 3, 1));

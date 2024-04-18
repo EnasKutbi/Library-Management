@@ -1,10 +1,13 @@
 public class Library {
     private List<Book> _books;
     private List<User> _users;
-    
-    public Library(){
+    private INotificationService notificationService;
+
+    public Library(INotificationService notificationService)
+    {
         _users = new List<User>();
         _books = new List<Book>();
+        this.notificationService = notificationService;
     }
 
     public List<Book> GetAllBooks(int pageNumber, int limitPerPage){
@@ -23,6 +26,7 @@ public class Library {
     }
     public void AddBook(Book book){
         _books.Add(book);
+        notificationService.SendNotificationOnSuccess($"Book {book.Title} was added");
     }
     public void AddUser(User user)
     {
@@ -34,9 +38,10 @@ public class Library {
         if (bookToDeleted != null)
         {
             _books.Remove(bookToDeleted);
+            notificationService.SendNotificationOnSuccess($"Book {bookToDeleted.Title} was deleted");
         } else
         {
-            Console.WriteLine($"Book with {id} was not found");
+            notificationService.SendNotificationOnFailure($"Book with {id} was not found");
         }
     }
     public void DeleteUser(Guid id)
@@ -45,10 +50,11 @@ public class Library {
         if (userToDeleted != null)
         {
             _users.Remove(userToDeleted);
+            notificationService.SendNotificationOnSuccess($"User {userToDeleted.Title} was deleted");
         }
         else
         {
-            Console.WriteLine($"User with {id} was not found");
+            notificationService.SendNotificationOnFailure($"User with {id} was not found");
         }
     }
 
